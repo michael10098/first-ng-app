@@ -8,12 +8,12 @@
   <label>Filter Todos</label>
   <input 
     name="searchTerm"
-    [(ngModel)]="searchTerm" 
+    [(ngModel)]="searchInput" 
     placeholder="Search todos..." />
 </form>
 
 <ul class="todos">
-  @for (todo of todoItems() | filterTodos : searchTerm(); track todo.id) {
+  @for (todo of todoItems() | filterTodos : searchDebounced() || ""; track todo.id) {
   <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo" />
   }
 </ul>

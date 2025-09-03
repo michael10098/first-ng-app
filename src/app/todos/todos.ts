@@ -5,6 +5,7 @@ import { catchError } from 'rxjs';
 import { TodoItem } from '../components/todo-item/todo-item';
 import { FormsModule } from '@angular/forms';
 import { FilterTodosPipe } from '../pipes/filter-todos-pipe';
+import { debouncedSignal } from '../signal-utils';
 
 @Component({
   selector: 'app-todos',
@@ -15,7 +16,8 @@ import { FilterTodosPipe } from '../pipes/filter-todos-pipe';
 export class Todos implements OnInit {
   todosService = inject(TodosService)
   todoItems = signal<Array<Todo>>([]);
-  searchTerm = signal('');
+  searchInput = signal('');
+  searchDebounced = debouncedSignal(this.searchInput, 500);
 
   ngOnInit(): void {
     this.todosService
