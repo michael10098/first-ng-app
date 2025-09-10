@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavoritesComponent } from './favorites.component';
+import { KeyLoggerComponent } from './key-logger.component';
 
-describe('FavoritesComponent', () => {
-  let component: FavoritesComponent;
-  let fixture: ComponentFixture<FavoritesComponent>;
+describe('KeyLoggerComponent', () => {
+  let component: KeyLoggerComponent;
+  let fixture: ComponentFixture<KeyLoggerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FavoritesComponent]
+      imports: [KeyLoggerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FavoritesComponent);
+    fixture = TestBed.createComponent(KeyLoggerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
