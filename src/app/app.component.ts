@@ -4,7 +4,6 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
 import { Observable } from 'rxjs';
-import { KeyLoggerComponent } from './key-logger/key-logger.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,6 @@ import { KeyLoggerComponent } from './key-logger/key-logger.component';
     RouterOutlet,
     ProductListComponent,
     CopyrightDirective,
-    KeyLoggerComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
