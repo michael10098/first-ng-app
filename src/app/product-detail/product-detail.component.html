@@ -1,12 +1,24 @@
-@if (product()) {
+@let product = (product$ | async);
+@if (product) {
   <p>You selected:
-    <strong>{{product()!.title}}</strong>
+    <strong>{{product.title}}</strong>
   </p>
-  <p>{{product()!.price | currency:'EUR'}}</p>
+  <div><img  class="images" src="{{product.image}}" /></div>
+  <p>{{product.price | currency:'EUR'}}</p>
+  <input placeholder="New price" #price type="number" />
+  <button 
+    class="secondary" 
+    (click)="changePrice(product, price.value)"
+  >
+    Change
+  </button>
   <div class="pill-group">
-    @for (cat of product()!.categories | keyvalue; track cat.key) {
-      <p class="pill">{{cat.value | lowercase}}</p>
-    }
+    <p class="pill">{{ product.category }}</p>
   </div>  
-  <button (click)="addToCart()">Add to cart</button>
+  <div class="button-group">
+    @if (authService.isLoggedIn()) {
+      <button (click)="addToCart()">Add to cart</button>
+    }
+    <button class="delete" (click)="remove(product)">Delete</button>
+  </div>
 }
