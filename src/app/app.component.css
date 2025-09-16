@@ -87,20 +87,27 @@ main {
   margin-inline-start: 0.25rem;
 }
 
-.social-links {
+header {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   gap: 0.73rem;
+  justify-content: end;
   margin-top: 1.5rem;
 }
 
-.social-links path {
-  transition: fill 0.3s ease;
-  fill: var(--gray-400);
+.menu-links {
+  display: flex;
+  align-items: center;
+  gap: 0.73rem;
 }
 
-.social-links a:hover svg path {
-  fill: var(--gray-900);
+.menu-links a {
+  transition: fill 0.3s ease;
+  color: var(--gray-400);
+}
+
+.menu-links a:hover {
+  color: var(--gray-900);
 }
 
 @media screen and (max-width: 650px) {
@@ -115,4 +122,8 @@ main {
     background: var(--red-to-pink-to-purple-horizontal-gradient);
     margin-block: 1.5rem;
   }
+}
+
+.menu-links a.active {
+  color: var(--electric-violet);
 }

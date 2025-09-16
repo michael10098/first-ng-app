@@ -8,13 +8,12 @@ import { AuthService } from '../auth.service';
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
-
   constructor(public authService: AuthService) {}
 
   login() {
-    this.authService.login('david_r','3478*#54').subscribe();
+    this.authService.login('david_r', '3478*#54').subscribe();
   }
-
+  
   logout() {
     this.authService.logout();
   }

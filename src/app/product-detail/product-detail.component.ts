@@ -1,9 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  OnChanges,
+  OnInit
+} from '@angular/core';
 import { Product } from '../product';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,30 +18,34 @@ import { AuthService } from '../auth.service';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent implements OnChanges{
-  constructor(
-    private productService: ProductsService,
-    public authService: AuthService) {}
+export class ProductDetailComponent implements OnInit {
+  id = input<string>();
   product$: Observable<Product> | undefined;
-  added = output();
-  id = input<number>();
-  deleted = output();
+
+  constructor(
+    private productService: ProductsService, 
+    public authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   addToCart() {
-    this.added.emit();
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.product$ = this.productService.getProduct(this.id()!);
-  }
-
+  
   changePrice(product: Product, price: string) {
-    this.productService.updateProduct(product.id, Number(price)).subscribe();
+    this.productService.updateProduct(product.id, Number(price)).subscribe(() => {
+      this.router.navigate(['/products']);
+    });
   }
 
   remove(product: Product) {
     this.productService.deleteProduct(product.id).subscribe(() => {
-      this.deleted.emit();
+      this.router.navigate(['/products'])
     });
   }
+
+  ngOnInit(): void {
+    this.product$ = this.productService.getProduct(Number(this.id()!));
+  }
+  
 }
