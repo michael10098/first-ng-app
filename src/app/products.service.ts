@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Product } from './product';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, map, of, tap, catchError, throwError, retry } from 'rxjs';
 import { APP_SETTINGS } from './app.settings';
 
 @Injectable({
@@ -13,15 +13,19 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(limit?:number): Observable<Product[]> {
+  getProducts(limit?: number): Observable<Product[]> {
     if (this.products.length === 0) {
       const options = new HttpParams().set('limit', limit || 10);
       return this.http.get<Product[]>(this.productsUrl, {
         params: options
-      }).pipe(map(products => {
-        this.products = products;
-        return products;
-      }));
+      }).pipe(
+        map(products => {
+          this.products = products;
+          return products;
+        }),
+        retry(2),
+        catchError(this.handleError)
+      );
     }
     return of(this.products);
   }
@@ -61,4 +65,24 @@ export class ProductsService {
     );
   }
 
+  private handleError(error: HttpErrorResponse) {
+    let message = '';
+    switch(error.status) {
+      case 0:
+        message = 'Client error';
+        break;
+      case HttpStatusCode.InternalServerError:
+        message = 'Server error';
+        break;
+      case HttpStatusCode.BadRequest:
+        message = 'Request error';
+        break;
+      default:
+        message = 'Unknown error';
+    }
+
+    console.error(message, error.error);
+
+    return throwError(() => error);
+  }
 }
