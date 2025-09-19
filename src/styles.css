@@ -12,10 +12,10 @@
     box-sizing: inherit;
     position: relative;
 }
-input.valid {
+input.valid, input.ng-dirty.ng-valid {
   border: solid green;
 }
-input.invalid {
+input.invalid, input.ng-dirty.ng-invalid {
   border: solid red;
 }
 input {
@@ -51,4 +51,17 @@ a {
 }
 .spacer {
   flex: 1 1 auto;
+}
+label {
+  margin-bottom: 4px;
+  display: block;
+}
+.help-text {
+  display: flex;
+  color: var(--hot-red);
+  font-size: 0.875rem;
+}
+button:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
 }
