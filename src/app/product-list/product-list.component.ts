@@ -6,6 +6,9 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 import { SortPipe } from '../sort.pipe';
 import { ProductsService } from '../products.service';
 import { RouterLink, ActivatedRoute } from '@angular/router';
+import { MatMiniFabAnchor, MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon'
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +16,10 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
     ProductDetailComponent,
     SortPipe,
     AsyncPipe,
-    RouterLink
+    RouterLink,
+    MatMiniFabButton,
+    MatIcon,
+    MatCardModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'

@@ -4,6 +4,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './copyright.directive';
 import { APP_SETTINGS } from './app.settings';
 import { AuthComponent } from './auth/auth.component';
+import { MatToolbarRow, MatToolbar } from '@angular/material/toolbar';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,10 @@ import { AuthComponent } from './auth/auth.component';
     ProductListComponent,
     RouterLinkActive,
     CopyrightDirective,
-    AuthComponent
+    AuthComponent,
+    MatToolbarRow,
+    MatToolbar,
+    MatButton
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

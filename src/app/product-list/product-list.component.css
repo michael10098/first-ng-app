@@ -61,3 +61,8 @@ path {
 a:hover svg path {
   fill: var(--gray-900);
 }
+
+mat-card {
+  margin: 1.375rem;
+  cursor: pointer;
+}

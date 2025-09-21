@@ -3,29 +3,23 @@
 @if (products) {
   <div class="caption">
     <h1>Products ({{products.length}})</h1>
-    <a routerLink="new">
-      <svg
-        width="24"
-        height="24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd">
-        <path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/>
-      </svg>
-    </a>
+    <button mat-mini-fab routerLink="new">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 }
 
 <ul class="pill-group">
   @for (product of products | sort; track product.id) {
-    <li class="pill">
-      @switch (product.category) {
-        @case ('electronics') { ⌨️ }
-        @case ('jewelery') { 💎 }
-        @default { 🏷️ }
-      }
-      <a [routerLink]="[product.id]">{{product.title}}</a>
-    </li>
+    <mat-card [routerLink]="[product.id]">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ product.title }}</mat-card-title>
+          <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+          <img mat-card-sm-image [src]="product.image" />
+        </mat-card-title-group>
+      </mat-card-header>
+    </mat-card>
   } @empty {
     <p>No products found!</p>
   }

@@ -29,22 +29,18 @@
 button.secondary {
   display: inline;
   margin-left: 5px;
-  --button-accent: var(--vivid-pink);
 }
 
 button.delete {
   display: inline;
   margin-left: 5px;
-  --button-accent: var(--hot-red);
-}
-
-.button-group {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  flex-wrap: wrap;
+  color: brown;
 }
 
 :host {
   width: 450px;
+}
+
+mat-chip-set {
+  margin-bottom: 1.37rem;
 }

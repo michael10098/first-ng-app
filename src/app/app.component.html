@@ -1,16 +1,26 @@
 <header>
-  <h2>{{ title }}</h2>
-  <span class="spacer"></span>
-  <div class="menu-links">
-    <a routerLink="/products" routerLinkActive="active">Products</a>
-    <a routerLink="/cart" routerLinkActive="active">My Cart</a>
-    <a routerLink="/user" routerLinkActive="active">My Profile</a>
-  </div>
-  <app-auth></app-auth>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <h2>{{ title }}</h2>
+      <span class="spacer"></span>
+      <div class="menu-links">
+        <button mat-button routerLink="/products" >Products</button>
+        <button mat-button routerLink="/cart">My Cart</button>
+        <button mat-button routerLink="/user">My Profile</button>
+      </div>
+      <app-auth></app-auth>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </header>
 <main class="main">
   <div class="content">
     <router-outlet />
   </div>
 </main>
-<footer appCopyright> - v{{ settings.version }}</footer>
+<footer>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span appCopyright>- v{{ settings.version }}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</footer>

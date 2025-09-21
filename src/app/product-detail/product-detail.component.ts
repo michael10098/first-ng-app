@@ -14,14 +14,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../cart.service';
 import { PriceMaximumDirective } from '../price-maximum.directive';
+import { MatButton, MatIconButton } from '@angular/material/button'
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatError, MatSuffix } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
+import { MatChipSet, MatChip } from '@angular/material/chips';
 
 @Component({
   selector: 'app-product-detail',
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
-    PriceMaximumDirective
-  ],
+    PriceMaximumDirective,
+    MatButton,
+    MatFormField,
+    MatError,
+    MatIcon,
+    MatSuffix,
+    MatIconButton,
+    MatInput,
+    MatChipSet,
+    MatChip
+],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
