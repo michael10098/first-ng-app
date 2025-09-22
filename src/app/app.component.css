@@ -100,3 +100,7 @@ main {
     margin-block: 1.5rem;
   }
 }
+
+button {
+  margin: 5px;
+}

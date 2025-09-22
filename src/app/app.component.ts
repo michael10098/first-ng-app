@@ -6,6 +6,8 @@ import { APP_SETTINGS } from './app.settings';
 import { AuthComponent } from './auth/auth.component';
 import { MatToolbarRow, MatToolbar } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
+import { MatBadge } from '@angular/material/badge';
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,8 @@ import { MatButton } from '@angular/material/button';
     AuthComponent,
     MatToolbarRow,
     MatToolbar,
-    MatButton
+    MatButton,
+    MatBadge
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -26,6 +29,7 @@ import { MatButton } from '@angular/material/button';
 export class AppComponent implements AfterViewInit {
   settings = inject(APP_SETTINGS);
   title = '';
+  cartService = inject(CartService);
 
   ngAfterViewInit(): void {
     this.title = this.settings.title;
