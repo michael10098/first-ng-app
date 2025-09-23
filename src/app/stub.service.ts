@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  isLoggedIn = false;
+export class StubService {
+  name = '';
+  isBusy = false;
 }
