@@ -1,14 +1,33 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { environment } from '../environments/environment';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CopyrightDirective } from './copyright.directive';
+import { APP_SETTINGS } from './app.settings';
+import { AuthComponent } from './auth/auth.component';
+import { MatToolbarRow, MatToolbar } from '@angular/material/toolbar';
+import { MatButton } from '@angular/material/button';
+import { MatBadge } from '@angular/material/badge';
+import { CartService } from './cart.service';
+import { FeaturedComponent } from './featured/featured.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    CopyrightDirective,
+    AuthComponent,
+    MatToolbarRow,
+    MatToolbar,
+    MatButton,
+    MatBadge,
+    FeaturedComponent,
+    MatProgressSpinner
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'my-app';
-  apiUrl = environment.apiUrl;
+  settings = inject(APP_SETTINGS);
+  cartService = inject(CartService);
 }
